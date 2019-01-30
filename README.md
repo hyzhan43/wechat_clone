@@ -1,8 +1,5 @@
-# flutter_wechat
+# wechat_clone
 
-A new Flutter application.
+Flutter 微信克隆 Demo
 
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+[学习教程](https://space.bilibili.com/72683969/video).
