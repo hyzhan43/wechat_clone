@@ -5,7 +5,7 @@ import 'package:flutter_wechat/home/home_screen.dart';
 void main() => runApp(MaterialApp(
       title: '微信',
       theme: ThemeData.light().copyWith(
-        primaryColor: Color(AppColors.AppBarColor)
+        primaryColor: Color(AppColors.AppBarColor),
       ),
       home: HomeScreen(),
     ));
