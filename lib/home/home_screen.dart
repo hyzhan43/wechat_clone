@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wechat/constants.dart';
+import 'package:flutter_wechat/home/conversation_page.dart';
 
 enum ActionItems { GROUP_CHAT, ADD_FRIEND, QR_SCAN, PAYMENT, HELP }
 
@@ -40,25 +41,53 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _navigationViews = [
       NavigationIconView(
-          title: '微信', icon: Icons.chat_bubble, activeIcon: Icons.chat),
-      NavigationIconView(
-          title: '通讯录', icon: Icons.add, activeIcon: Icons.add_box),
-      NavigationIconView(
-        title: '发现',
-        icon: Icons.delete,
-        activeIcon: Icons.delete_forever,
+        title: '微信',
+        icon: IconData(
+          0xe608,
+          fontFamily: Constants.IconFontFamily,
+        ),
+        activeIcon: IconData(
+          0xe603,
+          fontFamily: Constants.IconFontFamily,
+        ),
       ),
       NavigationIconView(
-        title: '我',
-        icon: Icons.person,
-        activeIcon: Icons.person_add,
+          title: '通讯录',
+          icon: IconData(
+            0xe601,
+            fontFamily: Constants.IconFontFamily,
+          ),
+          activeIcon: IconData(
+            0xe656,
+            fontFamily: Constants.IconFontFamily,
+          )
+      ),
+      NavigationIconView(
+          title: '发现',
+          icon: IconData(
+            0xe600,
+            fontFamily: Constants.IconFontFamily,
+          ),
+          activeIcon: IconData(
+            0xe671,
+            fontFamily: Constants.IconFontFamily,
+          )
+      ),
+      NavigationIconView(
+          title: '我',
+          icon: IconData(
+            0xe6c0,
+            fontFamily: Constants.IconFontFamily,
+          ),
+          activeIcon: IconData(
+            0xe626,
+            fontFamily: Constants.IconFontFamily,
+          )
       ),
     ];
 
     _pages = [
-      Container(
-        color: Colors.red,
-      ),
+      ConversationPage(),
       Container(
         color: Colors.green,
       ),
@@ -96,8 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: (int index) {
         setState(() {
           _currentIndex = index;
-          
-          _pageController.animateToPage(_currentIndex, duration: Duration(milliseconds: 200), curve: Curves.easeInOut);
+
+          _pageController.animateToPage(_currentIndex,
+              duration: Duration(milliseconds: 200), curve: Curves.easeInOut);
         });
         print('点击的事第$index个Tab');
       },
