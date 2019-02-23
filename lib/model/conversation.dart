@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../constants.dart' show AppColors;
 
 class Conversation {
-
   const Conversation({
     @required this.avatar,
     @required this.title,
@@ -12,8 +11,7 @@ class Conversation {
     this.isMute: false,
     this.unreadMsgCount: 0,
     this.displayDot: false,
-  })
-      : assert(avatar != null),
+  })  : assert(avatar != null),
         assert(title != null),
         assert(updateAt != null);
 
@@ -25,6 +23,13 @@ class Conversation {
   final int titleColor;
   final int unreadMsgCount;
   final bool displayDot;
+
+  bool isAvatarFromNet() {
+    if (this.avatar.indexOf('http') == 0 || this.avatar.indexOf('https') == 0) {
+      return true;
+    }
+    return false;
+  }
 }
 
 const List<Conversation> mockConversations = [
