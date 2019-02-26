@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants.dart' show AppColors, AppStyles, Constants;
-import '../model/conversation.dart' show Conversation, mockConversations;
+import '../model/conversation.dart' show Conversation, Device, mockConversations;
 
 class _ConversationItem extends StatelessWidget {
   const _ConversationItem({Key key, this.conversation})
@@ -35,7 +35,7 @@ class _ConversationItem extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius:
-            BorderRadius.circular(Constants.UnReadMsgNotifyDotSize / 2),
+                BorderRadius.circular(Constants.UnReadMsgNotifyDotSize / 2),
             color: Color(AppColors.NotifyDotBg)),
         child: Text(
           '99',
@@ -63,7 +63,9 @@ class _ConversationItem extends StatelessWidget {
 
     var _rightArea = <Widget>[
       Text(conversation.updateAt, style: AppStyles.DesStyle),
-      Container(height: 10.0,)
+      Container(
+        height: 10.0,
+      )
     ];
 
     if (conversation.isMute) {
@@ -115,6 +117,53 @@ class _ConversationItem extends StatelessWidget {
   }
 }
 
+
+
+class _DeviceInfoItem extends StatelessWidget {
+  const _DeviceInfoItem({this.device: Device.WIN}) : assert(device != null);
+
+  final Device device;
+
+  int get iconName {
+    return device == Device.WIN ? 0xe75e : 0xe640;
+  }
+
+  String get deviceName {
+    return device == Device.WIN ? 'Windows' : 'Mac';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      decoration: BoxDecoration(
+          border: Border(
+              bottom: BorderSide(
+                  width: Constants.DividerWidth,
+                  color: Color(AppColors.DividerColor))),
+          color: Color(AppColors.DeviceInfoItemBg)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Icon(
+            IconData(this.iconName, fontFamily: Constants.IconFontFamily),
+            size: 24.0,
+            color: Color(AppColors.DeviceInfoItemIcon),
+          ),
+          SizedBox(
+            width: 16.0,
+          ),
+          Text(
+            '$deviceName 微信已登录, 手机通知已关闭',
+            style: AppStyles.DeviceInfoItemTextStyle,
+          )
+        ],
+      ),
+    );
+  }
+}
+
 class ConversationPage extends StatefulWidget {
   @override
   _ConversationPageState createState() => _ConversationPageState();
@@ -125,6 +174,10 @@ class _ConversationPageState extends State<ConversationPage> {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
+        if (index == 0) {
+          return _DeviceInfoItem(device: Device.MAC,);
+        }
+
         return _ConversationItem(
           conversation: mockConversations[index],
         );
