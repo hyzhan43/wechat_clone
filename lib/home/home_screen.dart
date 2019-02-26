@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wechat/constants.dart';
+import 'package:flutter_wechat/home/contracts_page.dart';
 import 'package:flutter_wechat/home/conversation_page.dart';
 
 enum ActionItems { GROUP_CHAT, ADD_FRIEND, QR_SCAN, PAYMENT, HELP }
@@ -88,9 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     _pages = [
       ConversationPage(),
-      Container(
-        color: Colors.green,
-      ),
+      ContractsPage(),
       Container(
         color: Colors.blue,
       ),
